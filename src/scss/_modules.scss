@@ -66,9 +66,10 @@
   p > code,
   li > code {
     padding: 0 5px;
+    border: 1px solid $blue-border;
     border-radius: 3px;
 
-    background-color: $blue-border;
+    background-color: lighten($blue-border, 8%);
   }
 }
 
