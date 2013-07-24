@@ -68,23 +68,23 @@ module.exports = function(grunt) {
       },
 
       stylus: {
-        files: 'src/stylus/*/**.styl',
+        files: 'src/stylus/*.styl',
         tasks: 'stylus',
         events: true
       },
 
       css: {
-        files: 'public/css/*/**.css',
+        files: 'public/css/*.css',
         tasks: 'cssmin'
       },
 
       content: {
-        files: ['src/*/**.hbs.html', 'src/includes/*'],
+        files: ['src/*.hbs.html', 'src/includes/*'],
         tasks: 'static:docs'
       },
 
       js: {
-        files: 'src/js/*/**.js',
+        files: 'src/js/*.js',
         tasks: 'concat'
       }
     },
