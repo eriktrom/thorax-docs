@@ -113,6 +113,7 @@ module.exports = function(grunt) {
       dev: {
         options: {
           port: 8000,
+          hostname: '*',
           base: 'public'
         }
       }
