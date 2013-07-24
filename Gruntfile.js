@@ -91,6 +91,10 @@ module.exports = function(grunt) {
 
     stylus: {
       build: {
+        options: {
+          urlfunc: 'embedurl'
+        },
+
         files: {
           'public/css/main.css': 'src/stylus/main.styl'
         }
