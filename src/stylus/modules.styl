@@ -86,7 +86,7 @@
   }
 
   input {
-    @include box-sizing(border-box);
+    box-sizing: border-box;
     width: 100%;
     padding: 5px 8px;
     position: relative;
@@ -192,14 +192,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 
-  @include box-shadow(
+  box-shadow: 
     -1px 1px 0 $blue-border,
     -2px 2px 0 $blue-border, 
     -3px 3px 0 $blue-border,
-    -4px 4px 0 $blue-border
-  );
+    -4px 4px 0 $blue-border;
 
-  @include transition(all 0.1s ease-out);
+  transition: all 0.1s ease-out;
 
   &:hover {
     background-color: lighten($yellow, 10%);
@@ -210,7 +209,7 @@
   &:active {
     bottom: -4px;
     left: -4px;
-    @include box-shadow(inset 1px 1px 0 rgba(0,0,0,0.1));
+    box-shadow: inset 1px 1px 0 rgba(0,0,0,0.1);
   }
 }
 
@@ -221,13 +220,12 @@
   color: #FFF;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
 
-  @include box-shadow(
+  box-shadow:
     -1px 1px 0 $blue-border,
     -2px 2px 0 $blue-border, 
     -3px 3px 0 $blue-border,
     -4px 4px 0 $blue-border,
-    -5px 5px 0 $blue-border
-  );
+    -5px 5px 0 $blue-border;
 
   &:hover {
     background-color: lighten($blue, 10%);
