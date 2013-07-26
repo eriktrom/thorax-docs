@@ -18,6 +18,7 @@ module.exports = function(grunt) {
         ]
       }
     },
+
     meta: {
       version: '0.1.0',
       banner: '/*! Thorax - v<%= meta.version %> - ' +
@@ -25,6 +26,7 @@ module.exports = function(grunt) {
         '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
         'Thorax; Licensed MIT */'
     },
+
     static: {
       docs: {
         require: 'helpers.js',
@@ -52,33 +54,71 @@ module.exports = function(grunt) {
         })()
       }
     },
+
     concat: {
       dist: {
         src: ['src/js/*.js'],
         dest: 'public/js/compiled/site.js'
       }
     },
+
     watch: {
-      files: ['src/scss/*.scss', 'src/*.hbs.html', 'src/includes/*'],
-      tasks: ['static:docs','compass:build','concat']
-    },
-    compass: {
-      build: {
-        src: 'src/scss',
-        dest: 'public/css',
-        outputstyle: 'compressed',
-        linecomments: false,
-        forcecompile: true
+      options: {
+        livereload: true
+      },
+
+      stylus: {
+        files: 'src/stylus/*.styl',
+        tasks: 'stylus',
+        events: true
+      },
+
+      css: {
+        files: 'public/css/*.css',
+        tasks: 'cssmin'
+      },
+
+      content: {
+        files: ['src/*.hbs.html', 'src/includes/*'],
+        tasks: 'static:docs'
+      },
+
+      js: {
+        files: 'src/js/*.js',
+        tasks: 'concat'
       }
     },
-    connect: {
-      server: {
+
+    stylus: {
+      build: {
         options: {
-          port: 8000,
-          base: './public'
+          urlfunc: 'embedurl'
+        },
+
+        files: {
+          'public/css/main.css': 'src/stylus/main.styl'
         }
       }
     },
+
+    cssmin: {
+      minify: {
+        files: {
+          'public/css/main.css': 'public/css/main.css'
+        }
+      }
+    },
+
+    connect: {
+      dev: {
+        options: {
+          port: 8000,
+          hostname: '*',
+          base: 'public'
+        }
+      }
+    },
+
     jshint: {
       options: {
         curly: true,
@@ -103,11 +143,10 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['process-readme', 'copy:main','static:docs','build','connect:server','watch']);
-  grunt.registerTask('start', ['process-readme', 'copy:main','static:docs','build','connect:server','open-browser','watch']);
-  grunt.registerTask('build', ['compass','concat']);
-  grunt.registerTask('release', ['build', 'release-docs'])
-
+  grunt.registerTask('default', ['build', 'connect', 'watch']);
+  grunt.registerTask('start', ['build', 'connect', 'open-browser', 'watch']);
+  grunt.registerTask('build', ['process-readme', 'copy:main', 'static:docs', 'stylus', 'cssmin', 'concat']);
+  grunt.registerTask('release', ['build', 'release-docs']);
 
   grunt.registerTask('open-browser', function() {
     var open = require('open');
@@ -118,11 +157,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('static');
 
   // Extra Tasks
 
   grunt.loadTasks('grunt');
-
-
 };

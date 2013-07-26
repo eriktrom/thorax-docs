@@ -16,9 +16,10 @@
     "open": "latest",
     "grunt": "latest",
     "grunt-contrib-copy": "latest",
-    "grunt-contrib-connect": "latest",
-    "grunt-contrib-watch": "latest",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-concat": "latest",
-    "grunt-contrib-uglify": "latest"
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-contrib-stylus": "~0.5.1"
   }
 }
