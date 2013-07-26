@@ -1,35 +1,51 @@
-.l-constrained {
-  width: 960px;
+.constrained {
+  @extend .clearfix;
+
+  width: 90%
+  max-width: 1000px;
   margin: 0 auto;
   position: relative;
 }
 
-.l-row {
-  margin-left: -32px;
+.row {
+  @extend .clearfix;
 }
 
-.l-col1 {
-  width: 216px;
-  margin-left: 32px;
+.col {
   float: left;
+  padding-left: 32px;
+
+  &:first-child {
+    padding-left: 0;
+  }
 }
 
-.l-col2 {
-  width: 464px;
-  margin-left: 32px;
-  float: left;
+.col1-4 {
+  @extend .col;
+
+  width: 25%;
 }
 
-.l-col3 {
-  float: left;
-  width: 712px;
-  margin-left: 32px;
+.col1-3 {
+  @extend .col;
+
+  width: 33.33%;
 }
 
-.l-alpha {
-  margin-left: 0;
+.col2-3 {
+  @extend .col;
+
+  width: 66.66%;
 }
 
-.l-main {
-  width: 700px;
+.col1-2 {
+  @extend .col;
+
+  width: 50%;
+}
+
+.col3-4 {
+  @extend .col;
+
+  width: 75%;
 }

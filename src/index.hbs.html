@@ -1,19 +1,19 @@
 {{include "includes/page-header.hbs.html" title="Thorax: Backbone + Handlebars"}}
 
-<div class="hero clearfix">
-  <div class="hero-content l-constrained">
+<div class="hero">
+  <div class="hero-content constrained">
     <h2 class="tagline">An opinionated, battle-tested <a href="http://backbonejs.org/">Backbone</a> + <a href="http://handlebarsjs.com">Handlebars</a><br> framework to build large scale web applications.</h2>
 
     <a class="btn btn-primary btn-large" href="https://github.com/walmartlabs/thorax-seed">Clone Seed Project</a>
 
     <ul class="resources">
-        <li><a class="btn icon icon-play js-screencast" href="http://vimeo.com/60230630">Screencast</a></li>
-        <li><a class="btn icon icon-book" href="start.html">Getting Started</a></li>
-        <li><a class="btn icon icon-list" href="api.html">API Reference</a></li>
-      </ul>
+      <li><a class="btn icon icon-play js-screencast" href="http://vimeo.com/60230630">Screencast</a></li>
+      <li><a class="btn icon icon-book" href="start.html">Getting Started</a></li>
+      <li><a class="btn icon icon-list" href="api.html">API Reference</a></li>
+    </ul>
   </div>
   <div class="video">
-    <div class="l-constrained">
+    <div class="constrained">
       <button class="close-btn js-screencast">Close Video</button>
       <!-- Vimeo Embed src must include &amp;api=1 at the end -->
       <div class="video-container"><iframe src="http://player.vimeo.com/video/60230630?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;api=1" width="853" height="480" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>
@@ -22,7 +22,7 @@
 </div>
 
 <div class="used-by">
-  <div class="l-constrained">
+  <div class="constrained">
     <h3 class="used-by-caption">Used By</h3>
     <ul class="used-by-list">
       <li><a class="ir used-by-walmart" href="http://walmart.com">Walmart</a></li>
@@ -32,22 +32,24 @@
   </div>
 </div>
 
-<div class="l-constrained">
-  <div class="home-content l-row clearfix">
-    <div class="l-col3">
+<div class="constrained">
+  <div class="home-content row">
+    <div class="col3-4">
       <h2>Features</h2>
-      <div class="features-content l-col2 l-alpha clearfix">
-        {{include "content/features.md"}}
-      </div>
-      <div class="l-col1 features">
-        <ul class="examples">
-          {{#include "content/features.md" select="h2"}}
-            <li><a href="#{{id}}">{{innerHTML}}</a></li>
-          {{/include}}
-        </ul>
+      <div class="row">
+        <div class="features-content col2-3 clearfix">
+          {{include "content/features.md"}}
+        </div>
+        <div class="col1-3 features">
+          <ul class="examples">
+            {{#include "content/features.md" select="h2"}}
+              <li><a href="#{{id}}">{{innerHTML}}</a></li>
+            {{/include}}
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="l-col1 quick-start">
+    <div class="col1-4 quick-start">
       {{include "content/quick-start.md"}}
     </div>
   </div>
