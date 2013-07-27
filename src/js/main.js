@@ -1,5 +1,11 @@
 $(function() {
 
+  // Toggle nav menu
+
+  $('.nav-toggle').on('click', function() {
+    $('.nav').toggleClass('expanded');
+  });
+
   // Fix API sidebar position on scroll
 
   var sidebar = $('.sidebar');
