@@ -276,15 +276,12 @@
 .hero {
   position: relative;
 
-  border-bottom: 1px solid $blue-border;
-
   background: $white;
-
   text-align: center;
 }
 
 .hero-content {
-  padding: 3em 0 2em;
+  padding: 1.5em 0;
 }
 
 .video {
@@ -328,12 +325,15 @@
 .tagline {
   margin: 0;
 
+  font-size: 1.3125em
   font-weight: 400;
-  -webkit-font-smoothing: antialiased;
 
   a {
     font-weight: 700;
-    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  br {
+    display: none;
   }
 }
 
@@ -388,40 +388,6 @@
   }
 }
 
-@media only screen and (min-width: 35em) {
-  .nav-toggle {
-    display: none;
-  }
-
-  .nav {
-    overflow: visible;
-    clear: none;
-    float: right;
-    margin: 6px 0;
-    max-height: none;
-
-    font-size: 0.875em;
-    font-weight: 700;
-    text-rendering: optimizeLegibility;
-
-    ul {
-      margin: 0;
-      padding: 0;
-    }
-
-    li {
-      float: left;
-      margin-left: 1.5em;
-    }
-
-    a {
-      display: inline;
-      padding: 0;
-      border: 0;
-    }
-  }
-}
-
 .home-content {
   h2 {
     border-bottom: 5px solid $blue-border;
@@ -457,8 +423,9 @@
 }
 
 .used-by {
-  padding: 1.5em 0;
-  border-bottom: 1px solid $blue-border;
+  padding: 1em 0;
+  border: 1px solid $blue-border;
+  border-width: 1px 0;
   
   background: $blue-tint;
   text-align: center;
@@ -474,24 +441,21 @@
 }
 
 .used-by-list {
-  padding: 0.5em 0;
-  list-style: none;
   margin: 0;
+  padding: 0;
+
+  list-style: none;
 
   li {
-    display: inline-block;
-    zoom: 1;
-    *display: inline;
-    margin-left: 2em;
-
-    &:first-child {
-      margin-left: 0;
-    }
+    margin: 1.5em 0;
   }
 
   a {
-    display: block;
     position: relative;
+
+    display: block;
+    margin: 0 auto;
+
     background-position: bottom left;
     background-size: 100%;
 
@@ -525,23 +489,15 @@
 }
 
 .resources {
-  display: inline-block;
-  zoom: 1;
-  *display: inline;
+  display: block;
   padding: 0;
-  margin-left: 3.33%;
-  margin-top: 0;
-  position: relative;
-  bottom: 3px;
+  margin: 0;
 
   list-style: none;
 
   li {
-    display: inline-block;
-    zoom: 1;
-    *display: inline;
-
-    margin-left: 1.5em;
+    display: block;
+    margin-bottom: 10px;
   }
 }
 
@@ -649,4 +605,114 @@ pre .coffeescript .title {
 pre .keyword,
 pre .javascript .function {
   color: #8959a8;
+}
+
+@media only screen and (min-width: 35em) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav {
+    overflow: visible;
+    clear: none;
+    float: right;
+    margin: 6px 0;
+    max-height: none;
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      float: left;
+      margin-left: 1.5em;
+    }
+
+    a {
+      display: inline;
+      padding: 0;
+      border: 0;
+    }
+  }
+
+  .tagline {
+    br {
+      display: inline;
+    }
+  }
+
+  .resources {
+    li {
+      display: inline-block;
+      margin-left: 1.5em;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .used-by {
+    padding: 1.5em 0;
+    border-bottom: 1px solid $blue-border;
+
+    background: $blue-tint;
+    text-align: center;
+  }
+
+  .used-by-caption {
+    margin-top: 0;
+
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .used-by-list {
+    padding: 0.5em 0;
+    list-style: none;
+    margin: 0;
+
+    li {
+      display: inline-block;
+      margin: 0 0 0 2em;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    a {
+      display: block;
+      position: relative;
+      background-position: bottom left;
+      background-size: 100%;
+
+      &:hover {
+        background-position: top left;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 50em) {
+  .hero-content {
+    padding: 3em 0 2em;
+  }
+
+  .tagline {
+    font-size: 2em;
+  }
+
+  .resources {
+    display: inline-block;
+    margin-left: 3.33%;
+
+    li {
+      display: inline-block;
+
+      margin-left: 1.5em;
+    }
+  }
 }
