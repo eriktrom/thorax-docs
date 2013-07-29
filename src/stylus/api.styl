@@ -1,0 +1,161 @@
+.docs {
+  h2 {
+    margin-top: 2em;
+    border-bottom: 5px solid $blue-border;
+
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1 + h2 {
+    margin-top: 0.75em;
+  }
+
+  h3 {
+    display: block;
+    margin: 1.5em 0 1em;
+    padding-top: 1em;
+    border-top: 1px solid $blue-border;
+  }
+
+  h2 + h3 {
+    margin: 1em 0;
+    padding: 0;
+    border-top: 0;
+  }
+
+  table {
+    width: 100%;
+    margin: 1em 0;
+
+    background: #fff;
+
+    th {
+      text-align: left;
+    }
+
+    td, th {
+      padding: 6px 12px;
+      border: 1px solid $blue-border;
+    }
+
+    td:first-child {
+      white-space: nowrap;
+    }  
+  }
+
+  p > code,
+  li > code {
+    padding: 0 5px;
+    border: 1px solid $blue-border;
+    border-radius: 3px;
+
+    background-color: lighten($blue-border, 8%);
+  }
+}
+
+.sidebar {
+  margin-left: 731px;
+  padding: 0 0 0 2em;
+  position: absolute;
+  width: 200px;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  ul {
+    padding: 0;
+  }
+
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px 8px;
+    position: relative;
+    z-index: 2;
+
+    outline: none;
+
+    border: 1px solid $blue-border;
+    border-radius: 50px;
+
+    &:focus {
+      box-shadow: 0 0 5px 2px rgba($blue, 0.5);
+    }
+  }
+
+  &.is-fixed {
+    position: fixed;
+    top: 1.5em;
+  }
+}
+
+.sidebar input:focus + .search-results {
+  display: block;
+}
+
+.search-container {
+  width: 100%;
+  margin: 1em 0;
+  position: relative;
+}
+
+#search-reset {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 2;
+  
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  background: #e9e9e9;
+  color: #999;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sidebar-primary {
+  a {
+    display: block;
+    margin: 8px 0px 0;
+
+    color: $primary;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.sidebar-secondary {
+  display: none;
+  margin: 0 0 1em;
+
+  font-weight: normal;
+  font-size: 14px;
+
+  a {
+    margin: 4px 0;
+
+    color: $blue;
+
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+.top {
+  color: #222;
+  font-weight: normal;
+  font-size: 12px;
+
+  span {
+    font-size: 8px;
+  }
+}
