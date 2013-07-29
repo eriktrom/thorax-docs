@@ -77,9 +77,13 @@
  */
 
 .clearfix {
+  &:before,
   &:after {
     content: " "; /* 1 */
-    clear: both;
     display: table; /* 2 */
+  }
+
+  &:after {
+    clear: both;
   }
 }

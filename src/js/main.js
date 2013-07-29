@@ -60,7 +60,7 @@ $(function() {
   }
 
   // features toggle
-  $('.features li').click(function(event) {
+  $('.features-nav li').click(function(event) {
     event.preventDefault();
     var id = $(this).find('a').attr('href');
     hideFeatures();
@@ -68,7 +68,7 @@ $(function() {
   });
 
   function hideFeatures() {
-    $('.features li').each(function() {
+    $('.features-nav li').each(function() {
       toggleFeature($(this).find('a').attr('href'), false);
     });
   }
@@ -79,6 +79,6 @@ $(function() {
     elements.toggle(show);
   }
 
-  toggleFeature($('.features li:first a').attr('href'), true);
+  toggleFeature($('.features-nav li:first a').attr('href'), true);
 
 });

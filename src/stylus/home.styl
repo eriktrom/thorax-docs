@@ -26,6 +26,19 @@
   }
 }
 
+.resources {
+  display: block;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+
+  li {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
 .video {
   position: absolute;
   top: 0;
@@ -43,7 +56,7 @@
 
 .close-btn {
   bottom: 10px;
-  right: -20px;
+  right: 0;
   padding: 0;
   position: absolute;
 
@@ -179,7 +192,17 @@
   }
 }
 
+/* ==========================================================================
+   Features Widget
+   ========================================================================== */
+
+.features {
+  @extend $kilo-col3-4;
+}
+
 .features-content {
+  @extend $nano-col2-3;
+
   h2 {
     margin-top: 0;
     border: 0;
@@ -190,14 +213,15 @@
   }
 }
 
-.examples {
+.features-nav {
+  @extend $nano-col1-3;
+
   margin-top: 0;
-  padding: 0;
 
   font-size: 14px;
   font-weight: bold;
   list-style: none;
-
+  
   li {
     margin: 0.5em 0;
 
@@ -207,20 +231,13 @@
   }
 }
 
-.resources {
-  display: block;
-  padding: 0;
-  margin: 0;
-
-  list-style: none;
-
-  li {
-    display: block;
-    margin-bottom: 10px;
-  }
-}
+/* ==========================================================================
+   Quick Start Section
+   ========================================================================== */
 
 .quick-start {
+  @extend $kilo-col1-4;
+
   ul {
     padding: 0;
 
@@ -301,10 +318,10 @@
 }
 
 /* ==========================================================================
-   Screens 50em (800px) and Larger
+   Screens 55em (880px) and Larger (Kilo)
    ========================================================================== */
 
-@media only screen and (min-width: 50em) {
+@media only screen and (min-width: 55em) {
   .hero-content {
     padding: 3em 0 2em;
   }

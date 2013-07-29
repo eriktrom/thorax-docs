@@ -2,50 +2,132 @@
   @extend .clearfix;
 
   width: 90%
-  max-width: 1000px;
+  max-width: 968px;
   margin: 0 auto;
   position: relative;
 }
 
-.row {
+.grid {
   @extend .clearfix;
+
+  margin-left: -32px;
 }
 
-.col {
+$col {
   float: left;
   padding-left: 32px;
-
-  &:first-child {
-    padding-left: 0;
-  }
 }
 
-.col1-4 {
-  @extend .col;
+/* ==========================================================================
+   Base Screens (Pico)
+   ========================================================================== */
+
+$pico-col1-4 {
+  @extend $col;
 
   width: 25%;
 }
 
-.col1-3 {
-  @extend .col;
-
-  width: 33.33%;
-}
-
-.col2-3 {
-  @extend .col;
-
-  width: 66.66%;
-}
-
-.col1-2 {
-  @extend .col;
+$pico-col1-2 {
+  @extend $col;
 
   width: 50%;
 }
 
-.col3-4 {
-  @extend .col;
+$pico-col3-4 {
+  @extend $col;
 
   width: 75%;
+}
+
+$pico-col1-3 {
+  @extend $col;
+
+  width: 33.33%;
+}
+
+$pico-col2-3 {
+  @extend $col;
+
+  width: 66.66%;
+}
+
+/* ==========================================================================
+   Screens 35em (560px) and Larger (Nano)
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+  $nano-col1-4 {
+    @extend $col;
+
+    width: 25%;
+  }
+
+  $nano-col1-2 {
+    @extend $col;
+
+    width: 50%;
+  }
+
+  $nano-col3-4 {
+    @extend $col;
+
+    width: 75%;
+  }
+
+  $nano-col1-3 {
+    @extend $col;
+
+    width: 33.33%;
+  }
+
+  $nano-col2-3 {
+    @extend $col;
+
+    width: 66.66%;
+  }
+}
+
+/* ==========================================================================
+   Screens 55em (880px) and Larger (Kilo)
+   ========================================================================== */
+
+@media only screen and (min-width: 55em) {
+  $kilo-col1-4 {
+    @extend $col;
+
+    width: 25%;
+  }
+
+  $kilo-col1-2 {
+    @extend $col;
+
+    width: 50%;
+  }
+
+  $kilo-col3-4 {
+    @extend $col;
+
+    width: 75%;
+  }
+
+  $kilo-col1-3 {
+    @extend $col;
+
+    width: 33.33%;
+  }
+
+  $kilo-col2-3 {
+    @extend $col;
+
+    width: 66.66%;
+  }
+}
+
+/* ==========================================================================
+   Grid Utilites
+   ========================================================================== */
+
+.alpha {
+  padding-left: 0;
 }

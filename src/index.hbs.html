@@ -33,23 +33,21 @@
 </div>
 
 <div class="home-primary constrained">
-  <div class="row">
-    <div class="col3-4">
+  <div class="grid">
+    <div class="features">
       <h2>Features</h2>
-      <div class="row">
-        <div class="features-content col2-3 clearfix">
+      <div class="grid">
+        <div class="features-content clearfix">
           {{include "content/features.md"}}
         </div>
-        <div class="features col1-3">
-          <ul class="examples">
-            {{#include "content/features.md" select="h2"}}
-              <li><a href="#{{id}}">{{innerHTML}}</a></li>
-            {{/include}}
-          </ul>
-        </div>
+        <ul class="features-nav">
+          {{#include "content/features.md" select="h2"}}
+            <li><a href="#{{id}}">{{innerHTML}}</a></li>
+          {{/include}}
+        </ul>
       </div>
     </div>
-    <div class="col1-4 quick-start">
+    <div class="quick-start">
       {{include "content/quick-start.md"}}
     </div>
   </div>
