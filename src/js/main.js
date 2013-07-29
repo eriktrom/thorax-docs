@@ -1,9 +1,26 @@
 $(function() {
 
-  // Toggle nav menu
+  // Toggle mobile menus
 
-  $('.nav-toggle').on('click', function() {
-    $('.nav').toggleClass('expanded');
+  var toggleMenu = function($btn, $menu) {
+    $btn.toggleClass('active');
+    $menu.toggleClass('expanded');
+  }
+
+  $('.js-toggle').on('click', function() {
+    var $btn = $(this),
+        $menu = $( $btn.data('menu') );
+
+    toggleMenu($btn, $menu);
+  });
+
+  // Close mobile menus on select
+
+  $('.js-menu').on('click', 'a', function() {
+    var $menu = $(this).parents('.js-menu'),
+        $btn = $( $menu.data('control') );
+
+    toggleMenu($btn, $menu);
   });
 
   // Fix API sidebar position on scroll
@@ -30,7 +47,6 @@ $(function() {
 
     positionSidebar();
   }
-
 
   // Toggle tutorial video display
 

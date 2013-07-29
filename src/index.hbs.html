@@ -36,11 +36,14 @@
   <div class="grid">
     <div class="features">
       <h2>Features</h2>
+      <button class="js-toggle features-nav-toggle" data-menu=".features-nav" type="button">
+        <span class="visuallyhidden">Features Menu</span>
+      </button>
       <div class="grid">
         <div class="features-content clearfix">
           {{include "content/features.md"}}
         </div>
-        <ul class="features-nav">
+        <ul class="features-nav js-menu" data-control=".features-nav-toggle">
           {{#include "content/features.md" select="h2"}}
             <li><a href="#{{id}}">{{innerHTML}}</a></li>
           {{/include}}

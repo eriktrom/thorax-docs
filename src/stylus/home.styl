@@ -216,18 +216,54 @@
 .features-nav {
   @extend $nano-col1-3;
 
-  margin-top: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 73px;
+  right: 0;
+  left: 0;
 
+  max-height: 0;
+  margin-top: 0;
+  padding-left: 0;
+
+  background: $blue-tint;
   font-size: 14px;
   font-weight: bold;
   list-style: none;
-  
-  li {
-    margin: 0.5em 0;
+  transition: max-height ease 0.3s;
 
-    &:first-child {
-      margin-top: 0;
-    }
+  a {
+    display: block;
+    padding: 0.5em 1em;
+  }
+
+  &.expanded {
+    max-height: 297px;
+  }
+}
+
+.features-nav-toggle {
+  position: absolute;
+  top: 30px;
+  right: 0;
+
+  width: 40px;
+  height: 30px;
+  border: 0;
+
+  background: transparent;
+  color: $blue-light;
+  cursor: pointer;
+  line-height: @height;
+
+  &:hover {
+    color: $primary;
+  }
+
+  &:before {
+    content: '=';
+    font-size: 48px;
+    font-weight: 700;
   }
 }
 
@@ -314,6 +350,31 @@
         background-position: top left;
       }
     }
+  }
+
+  .features-nav {
+    overflow: visible;
+    position: static;
+
+    height: auto;
+    padding-left: $gutter;
+
+    li {
+      margin: 0.5em 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    a {
+      display: inline;
+      padding: 0;
+    }
+  }
+
+  .features-nav-toggle {
+    display: none;
   }
 }
 
