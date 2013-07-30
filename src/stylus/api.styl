@@ -3,6 +3,7 @@
     margin-top: 2em;
     border-bottom: 5px solid $blue-border;
 
+    font-size: 1.5em;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
@@ -16,6 +17,19 @@
     margin: 1.5em 0 1em;
     padding-top: 1em;
     border-top: 1px solid $blue-border;
+
+    font-size: 1.125em;
+
+    code,
+    em {
+      display: block;
+
+      color: #555;
+      font-family: $code;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 500;
+    }
   }
 
   h2 + h3 {
@@ -28,20 +42,31 @@
     width: 100%;
     margin: 1em 0;
 
+    font-size: 0.875em;
+  }
+
+  tr {
+    display: block;
+    margin-bottom: 20px;
+
     background: #fff;
+  }
 
-    th {
-      text-align: left;
-    }
+  th {
+    text-align: left;
+  }
 
-    td, th {
-      padding: 6px 12px;
-      border: 1px solid $blue-border;
-    }
+  td, th {
+    display: block;
+    padding: 6px;
+    border: 1px solid $blue-border;
 
-    td:first-child {
+    &:first-child {
+      border-bottom-width: 0;
+
+      background: $blue-tint;
       white-space: nowrap;
-    }  
+    }
   }
 
   p > code,
@@ -162,10 +187,58 @@
 }
 
 /* ==========================================================================
+   Screens 35em (560px) and Larger (Nano)
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+  .docs {
+    h2 {
+      font-size: 2em;
+    }
+
+    h3 {
+      font-size: 1.5em;
+
+      code,
+      em {
+        display: inline;
+        margin-left: 1.5em;
+      }
+    }
+
+    tr {
+      display: table-row;
+    }
+
+    th,
+    td {
+      display: table-cell;
+
+      &:first-child {
+        border-bottom-width: 1px;
+
+        background: transparent;
+      }
+    }
+  }
+}
+
+/* ==========================================================================
    Screens 55em (880px) and Larger (Kilo)
    ========================================================================== */
 
 @media only screen and (min-width: 55em) {
+  .docs {
+    table {
+      font-size: 1em;
+    }
+
+    td,
+    th {
+      padding: 6px 12px;
+    }
+  }
+
   .sidebar {
     position: absolute;
     top: 1.5em;
