@@ -35,9 +35,9 @@ $(function() {
       var docViewTop = $(window).scrollTop();
 
       if (sidebarTop <= docViewTop + 24) {
-        sidebar.addClass('is-fixed');
+        sidebar.addClass('fixed');
       } else {
-        sidebar.removeClass('is-fixed');
+        sidebar.removeClass('fixed');
       }
     };
 

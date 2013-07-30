@@ -37,16 +37,19 @@
   </div>
 </header>
 <div class="docs constrained">
-  <nav class="sidebar">
-    <div class="search-container">
-      <label class="visuallyhidden" for="search">API Search</label>
-      <input type="search" placeholder="API Search" id="search" name="search">
-      <button type="reset" id="search-reset" name="search-reset" title="Reset">&times;</button>
+  <div class="grid">
+    <div class="sidebar-container">
+      <nav class="sidebar">
+        <div class="search-container">
+          <label class="visuallyhidden" for="search">API Search</label>
+          <input type="search" placeholder="API Search" id="search" name="search">
+          <button type="reset" id="search-reset" name="search-reset" title="Reset">&times;</button>
+        </div>
+        {{api-toc}}
+        <a class="top" href="#top"><span>&#x25B2;</span> Back to Top</a>
+      </nav>
     </div>
-    {{api-toc}}
-    <a class="top" href="#top"><span>&#x25B2;</span> Back to Top</a>
-  </nav>
 
-  <div class="main">
+    <div class="api">
 
 
