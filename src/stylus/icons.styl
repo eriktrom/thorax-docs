@@ -6,29 +6,34 @@ $icon {
   -webkit-font-smoothing: antialiased;
 }
 
-.icon-play-circle:before {
-  @extend $icon;
+// Don't display icon font elements
+// unless @font-face is supported
+.fontface {
+  .icon-play-circle:before {
+    @extend $icon;
 
-  content: "\f021";
+    content: "\f021";
+  }
+
+  .icon-book:before {
+    @extend $icon;
+
+    content: "\f022";
+  }
+
+  .icon-list:before {
+    @extend $icon;
+
+    content: "\f023";
+  }
+
+  .icon-reorder:before {
+    @extend $icon;
+
+    content: "\f024";
+  }
 }
 
-.icon-book:before {
-  @extend $icon;
-
-  content: "\f022";
-}
-
-.icon-list:before {
-  @extend $icon;
-
-  content: "\f023";
-}
-
-.icon-reorder:before {
-  @extend $icon;
-
-  content: "\f024";
-}
 
 .btn {
   &.icon-play-circle:before,
