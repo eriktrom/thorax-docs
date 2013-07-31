@@ -7,15 +7,18 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     copy: {
-      main: {
-        files: [
-          {
-            src: ["*"],
-            dest: "./public/img/",
-            cwd: "./src/img/",
-            expand: true
-          }
-        ]
+      images: {
+        src: ["*"],
+        dest: "./public/img/",
+        cwd: "./src/img/",
+        expand: true
+      },
+
+      fonts: {
+        src: ["*"],
+        dest: "./public/fonts/",
+        cwd: "./src/fonts/",
+        expand: true
       }
     },
 
@@ -145,7 +148,7 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['build', 'connect', 'watch']);
   grunt.registerTask('start', ['build', 'connect', 'open-browser', 'watch']);
-  grunt.registerTask('build', ['process-readme', 'copy:main', 'static:docs', 'stylus', 'cssmin', 'concat']);
+  grunt.registerTask('build', ['process-readme', 'copy', 'static:docs', 'stylus', 'cssmin', 'concat']);
   grunt.registerTask('release', ['build', 'release-docs']);
 
   grunt.registerTask('open-browser', function() {
