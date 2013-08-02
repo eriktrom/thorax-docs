@@ -51,29 +51,48 @@ $(function() {
   // Toggle tutorial video display
 
   var hero = $('.hero'),
-      video = $('.video').find('iframe')[0],
-      player = $f(video),
+      heroContent = hero.find('.hero-content'),
+      video = $('.video'),
+      iframe = video.find('iframe')[0],
+      player = $f(iframe),
       videoButton = $('.js-screencast');
 
-  if (hero.length > 0) {
-    // hero.height( hero.outerHeight() );
+  var toggleVideo = function() {
 
-    var toggleVideo = function() {
-      if ( !hero.hasClass('has-video') || hero.hasClass('no-video') ) {
-        hero.addClass('has-video')
-            .removeClass('no-video');
-      } else {
-        hero.removeClass('has-video')
-            .addClass('no-video');
-        player.api('pause');
+    hero.height( hero.height() );
+
+    window.setTimeout(animateHero, 1);
+    window.setTimeout(checkHero, 2);
+  };
+
+  var animateHero = function() {
+    hero.on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function(e) {
+      if ( $(e.target).hasClass('hero') ) {
+        resetHero();
       }
-    };
-
-    videoButton.on('click', function(e) {
-      e.preventDefault();
-      toggleVideo();
-    });
+    })
+    .addClass('animating');
   }
+
+  var checkHero = function() {
+    if (hero.hasClass('has-video')) {
+      hero.height( heroContent.outerHeight() )
+          .removeClass('has-video')
+      player.api('pause');
+    } else {
+      hero.height( video.height() )
+          .addClass('has-video')
+    }
+  }
+
+  var resetHero = function() {
+    hero.height('auto').removeClass('animating');
+  }
+
+  videoButton.on('click', function(e) {
+    e.preventDefault();
+    toggleVideo();
+  });
 
   // features toggle
   $('.features-nav li').click(function(event) {
