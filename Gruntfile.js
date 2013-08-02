@@ -126,6 +126,13 @@ module.exports = function(grunt) {
             'src/js/api.js'
           ]
         }
+      },
+      ie: {
+        files: {
+          'public/js/ie.min.js': [
+            'src/js/ie/ie.js'
+          ]
+        }
       }
     },
 
