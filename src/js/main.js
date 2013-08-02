@@ -23,31 +23,6 @@ $(function() {
     toggleMenu($btn, $menu);
   });
 
-  // Fix API sidebar position on scroll
-
-  var sidebar = $('.sidebar');
-  var threshold = 24;
-
-  if (sidebar.length > 0) {
-    var sidebarTop = sidebar.offset().top;
-
-    var positionSidebar = function() {
-      var docViewTop = $(window).scrollTop();
-
-      if (sidebarTop <= docViewTop + 24) {
-        sidebar.addClass('fixed');
-      } else {
-        sidebar.removeClass('fixed');
-      }
-    };
-
-    $(window).scroll(function() {
-      positionSidebar();
-    });
-
-    positionSidebar();
-  }
-
   // Toggle tutorial video display
 
   var hero = $('.hero'),

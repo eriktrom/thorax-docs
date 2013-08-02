@@ -4,7 +4,7 @@ $(function() {
       $apiEntries = $('.sidebar-secondary li'),
       $headings = $('.sidebar-primary > li'),
       $searchReset = $('#search-reset'),
-      $sidebar = $('sidebar-primary');
+      $sidebar = $('.sidebar');
 
   $searchEl.keyup(updateSearch);
 
@@ -12,6 +12,28 @@ $(function() {
     $searchEl.val('');
     stateChangeCallbacks.notSearching();
   });
+
+  // Fix API sidebar position on scroll
+
+  if ($sidebar.length > 0) {
+    var sidebarTop = $sidebar.offset().top;
+
+    var positionSidebar = function() {
+      var docViewTop = $(window).scrollTop();
+
+      if (sidebarTop <= docViewTop) {
+        $sidebar.addClass('fixed');
+      } else {
+        $sidebar.removeClass('fixed');
+      }
+    };
+
+    $(window).scroll(function() {
+      positionSidebar();
+    });
+
+    positionSidebar();
+  }
   
   function escapeRegExp(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
