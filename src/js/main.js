@@ -58,7 +58,6 @@ $(function() {
       videoButton = $('.js-screencast');
 
   var toggleVideo = function() {
-
     hero.height( hero.height() );
 
     window.setTimeout(animateHero, 1);
