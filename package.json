@@ -5,7 +5,7 @@
     "underscore": "1.4.2",
     "async": "0.2.9",
     "static": "~2.0.0",
-    "grunt": "~0.4.1",
+    "grunt": "latest",
     "path": "latest",
     "which": "latest",
     "connect": "latest",
@@ -14,12 +14,12 @@
     "websocket": "latest",
     "handlebars": "latest",
     "open": "latest",
-    "grunt": "latest",
     "grunt-contrib-copy": "latest",
     "grunt-contrib-connect": "~0.3.0",
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-concat": "latest",
     "grunt-contrib-cssmin": "latest",
-    "grunt-contrib-stylus": "latest"
+    "grunt-contrib-stylus": "latest",
+    "grunt-contrib-uglify": "~0.2.2"
   }
 }

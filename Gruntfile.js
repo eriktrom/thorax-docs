@@ -1,23 +1,28 @@
 /*global module:false*/
 module.exports = function(grunt) {
   grunt.option('stack', true);
-  grunt.file.copy('./src/js/vendor/jquery-1.8.2.min.js', './public/js/vendor/jquery-1.8.2.min.js');
-  grunt.file.copy('./src/js/vendor/modernizr-2.6.2.min.js', './public/js/vendor/modernizr-2.6.2.min.js');
 
   // Project configuration.
   grunt.initConfig({
     copy: {
       images: {
-        src: ["*"],
+        src: ["**"],
         dest: "./public/img/",
         cwd: "./src/img/",
         expand: true
       },
 
       fonts: {
-        src: ["*"],
+        src: ["**"],
         dest: "./public/fonts/",
         cwd: "./src/fonts/",
+        expand: true
+      },
+
+      js: {
+        src: ["**"],
+        dest: "./public/js/",
+        cwd: "./src/js/",
         expand: true
       }
     },
@@ -58,13 +63,6 @@ module.exports = function(grunt) {
       }
     },
 
-    concat: {
-      dist: {
-        src: ['src/js/*.js'],
-        dest: 'public/js/compiled/site.js'
-      }
-    },
-
     watch: {
       options: {
         livereload: true
@@ -88,7 +86,7 @@ module.exports = function(grunt) {
 
       js: {
         files: 'src/js/*.js',
-        tasks: 'concat'
+        tasks: ['copy:js', 'uglify']
       }
     },
 
@@ -112,6 +110,25 @@ module.exports = function(grunt) {
       }
     },
 
+    uglify: {
+      build: {
+        options: {
+          sourceMap: 'public/js/sourcemap.js',
+          sourceMappingURL: '/js/sourcemap.js',
+          sourceMapPrefix: '2'
+        },
+        files: {
+          'public/js/site.min.js': [
+            'src/js/vendor/jquery-1.10.2.min.js',
+            'src/js/vendor/modernizr-2.6.2.min.js',
+            'src/js/plugins.js',
+            'src/js/main.js',
+            'src/js/api.js'
+          ]
+        }
+      }
+    },
+
     connect: {
       dev: {
         options: {
@@ -120,35 +137,13 @@ module.exports = function(grunt) {
           base: 'public'
         }
       }
-    },
-
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        boss: true,
-        eqnull: true,
-        browser: true,
-        devel: true
-      },
-      globals: {
-        jQuery: true,
-        $: true,
-        _: true
-      }
     }
   });
 
   // Default task.
   grunt.registerTask('default', ['build', 'connect', 'watch']);
   grunt.registerTask('start', ['build', 'connect', 'open-browser', 'watch']);
-  grunt.registerTask('build', ['process-readme', 'copy', 'static:docs', 'stylus', 'cssmin', 'concat']);
+  grunt.registerTask('build', ['process-readme', 'copy', 'static:docs', 'stylus', 'cssmin', 'uglify']);
   grunt.registerTask('release', ['build', 'release-docs']);
 
   grunt.registerTask('open-browser', function() {
@@ -159,9 +154,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('static');
 
   // Extra Tasks
