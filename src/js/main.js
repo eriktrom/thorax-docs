@@ -5,7 +5,7 @@ $(function() {
   var toggleMenu = function($btn, $menu) {
     $btn.toggleClass('active');
     $menu.toggleClass('expanded');
-  }
+  };
 
   $('.js-toggle').on('click', function() {
     var $btn = $(this),
@@ -54,8 +54,11 @@ $(function() {
       heroContent = hero.find('.hero-content'),
       video = $('.video'),
       iframe = video.find('iframe')[0],
-      player = $f(iframe),
       videoButton = $('.js-screencast');
+
+  if (iframe) {
+    var player = $f(iframe);
+  }
 
   var toggleVideo = function() {
     hero.height( hero.height() );
@@ -71,22 +74,22 @@ $(function() {
       }
     })
     .addClass('animating');
-  }
+  };
 
   var checkHero = function() {
     if (hero.hasClass('has-video')) {
       hero.height( heroContent.outerHeight() )
-          .removeClass('has-video')
+          .removeClass('has-video');
       player.api('pause');
     } else {
       hero.height( video.height() )
-          .addClass('has-video')
+          .addClass('has-video');
     }
-  }
+  };
 
   var resetHero = function() {
     hero.height('auto').removeClass('animating');
-  }
+  };
 
   videoButton.on('click', function(e) {
     e.preventDefault();
@@ -106,6 +109,7 @@ $(function() {
       toggleFeature($(this).find('a').attr('href'), false);
     });
   }
+
   hideFeatures();
 
   function toggleFeature(id, show) {
@@ -114,5 +118,4 @@ $(function() {
   }
 
   toggleFeature($('.features-nav li:first a').attr('href'), true);
-
 });
