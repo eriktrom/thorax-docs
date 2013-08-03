@@ -2,7 +2,7 @@
 
 ## Registry
 
-Thorax creates a special hash for each type of class to store all subclasses in your application. The use of `Thorax.Views` and `Handlebars.templates` (usually defined by Handlebars) is required to allow the `view`, `template` and other helper methods to operate, but the use of `Thorax.Models` and `Thorax.Collections` are optional and provided for consitency.
+Thorax creates a special hash for each type of class to store all subclasses in your application. The use of `Thorax.Views` and `Handlebars.templates` (usually defined by Handlebars) is required to allow the `view`, `template` and other helper methods to operate, but the use of `Thorax.Models` and `Thorax.Collections` are optional and provided for consistency.
 
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
   <thead>
@@ -123,7 +123,7 @@ If a view was embedded inside another with the `view` helper, or a generated `He
 
 ### retain *view.retain([owner])*
 
-Prevents a view from being destroyed if it would otherwise be. If a parent is destroyed all it's children will be destroyed, or if it was previously passed to `setView`
+Prevents a view from being destroyed if it would otherwise be. If a parent is destroyed all its children will be destroyed, or if it was previously passed to `setView`
 
 Given the code below:
 
@@ -146,7 +146,7 @@ Generally this method is not needed unless you are `retain`ing views.
 
 ### setModel *view.setModel(model [,options])*
 
-Setting `model` in the construtor will automatically call `setModel`, so the following are equivelent:
+Setting `model` in the constructor will automatically call `setModel`, so the following are equivelent:
 
     var view = new Thorax.View({
       model: myModel
