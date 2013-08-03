@@ -28,12 +28,19 @@ $(function() {
   var hero = $('.hero'),
       heroContent = hero.find('.hero-content'),
       video = $('.video'),
-      iframe = video.find('iframe')[0],
-      videoButton = $('.js-screencast');
+      videoButton = $('.js-screencast'),
+      videoEmbed = $('<iframe src="http://player.vimeo.com/video/60230630?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;api=1" width="853" height="480" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'),
+      videoLoaded = false,
+      player;
 
-  if (iframe) {
-    var player = $f(iframe);
-  }
+  var loadVideo = function() {
+    video.find('.iframe-container').append(videoEmbed);
+
+    player = $f( video.find('iframe')[0] );
+
+    toggleVideo();
+    videoLoaded = true;
+  };
 
   var toggleVideo = function() {
     hero.height( hero.height() );
@@ -68,7 +75,12 @@ $(function() {
 
   videoButton.on('click', function(e) {
     e.preventDefault();
-    toggleVideo();
+
+    if (videoLoaded === false) {
+      loadVideo();
+    } else {
+      toggleVideo();
+    }
   });
 
   // features toggle
