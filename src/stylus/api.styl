@@ -243,16 +243,16 @@
     max-width: 148px;
     padding-top: 1.5em;
   }
+}
 
-  // Only make the sidebar fixed position
-  // on screens over 31em (496px) tall
-  @media only screen and (min-height: 31em) {
-    .sidebar.fixed {
-      position: fixed;
+// Only make the sidebar fixed position
+// on screens over 31em (496px) tall
+@media only screen and (min-width: 35em) and (min-height: 31em) {
+  .sidebar.fixed {
+    position: fixed;
 
-      .top {
-        display: block;
-      }
+    .top {
+      display: block;
     }
   }
 }
