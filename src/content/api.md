@@ -2,7 +2,7 @@
 
 ## Registry
 
-Thorax creates a special hash for each type of class to store all subclasses in your application. The use of `Thorax.Views` and `Handlebars.templates` (usually defined by Handlebars) is required to allow the `view`, `template` and other helper methods to operate, but the use of `Thorax.Models` and `Thorax.Collections` are optional and provided for consitency.
+Thorax creates a special hash for each type of class to store all subclasses in your application. The use of `Thorax.Views` and `Handlebars.templates` (usually defined by Handlebars) is required to allow the `view`, `template` and other helper methods to operate, but the use of `Thorax.Models` and `Thorax.Collections` are optional and provided for consistency.
 
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
   <thead>
@@ -123,7 +123,7 @@ If a view was embedded inside another with the `view` helper, or a generated `He
 
 ### retain *view.retain([owner])*
 
-Prevents a view from being destroyed if it would otherwise be. If a parent is destroyed all it's children will be destroyed, or if it was previously passed to `setView`
+Prevents a view from being destroyed if it would otherwise be. If a parent is destroyed all its children will be destroyed, or if it was previously passed to `setView`
 
 Given the code below:
 
@@ -146,7 +146,7 @@ Generally this method is not needed unless you are `retain`ing views.
 
 ### setModel *view.setModel(model [,options])*
 
-Setting `model` in the construtor will automatically call `setModel`, so the following are equivelent:
+Setting `model` in the constructor will automatically call `setModel`, so the following are equivelent:
 
     var view = new Thorax.View({
       model: myModel
@@ -227,7 +227,7 @@ Each form input in your application should contain a corresponding label. Since 
 
 - `serialize` - called before validation with serialized attributes
 - `validate` - with an attributes hash and errors array after `validateInput` is called
-- `error` - with an errors array, if validateInput returned an array with any errors
+- `invalid` - with an errors array, if validateInput returned an array with any errors
 - `root` - the root element to serialize within, defaults to `this.$el`
 
 If your view uses inputs with non standard names (or no names, multiple inputs with the same name, etc), use the `serialize` event:

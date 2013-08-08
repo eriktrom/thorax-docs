@@ -1,35 +1,186 @@
-.l-constrained {
-  width: 960px;
+.constrained {
+  @extend .clearfix;
+
+  width: 90%
+  max-width: 968px;
   margin: 0 auto;
   position: relative;
 }
 
-.l-row {
-  margin-left: -32px;
+.grid {
+  @extend .clearfix;
+
+  margin-left: -($gutter);
 }
 
-.l-col1 {
-  width: 216px;
-  margin-left: 32px;
+$col {
   float: left;
+  width: 100%;
+  padding-left: $gutter;
 }
 
-.l-col2 {
-  width: 464px;
-  margin-left: 32px;
-  float: left;
+/* ==========================================================================
+   Base Screens (Pico)
+   ========================================================================== */
+
+$pico-col1-4 {
+  @extend $col;
+
+  width: 25%;
 }
 
-.l-col3 {
-  float: left;
-  width: 712px;
-  margin-left: 32px;
+$pico-col1-2 {
+  @extend $col;
+
+  width: 50%;
 }
 
-.l-alpha {
-  margin-left: 0;
+$pico-col3-4 {
+  @extend $col;
+
+  width: 75%;
 }
 
-.l-main {
-  width: 700px;
+$pico-col1-3 {
+  @extend $col;
+
+  width: 33.33%;
+}
+
+$pico-col2-3 {
+  @extend $col;
+
+  width: 66.66%;
+}
+
+$pico-push1-4 {
+  margin-left: 25%;
+}
+
+$pico-push1-2 {
+  margin-left: 50%;
+}
+
+$pico-push3-4 {
+  margin-left: 75%;
+}
+
+$pico-push1-3 {
+  margin-left: 33.33%;
+}
+
+$pico-push2-3 {
+  margin-left: 66.66%;
+}
+
+/* ==========================================================================
+   Screens 35em (560px) and Larger (Nano)
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+  $nano-col1-4 {
+    @extend $col;
+
+    width: 25%;
+  }
+
+  $nano-col1-2 {
+    @extend $col;
+
+    width: 50%;
+  }
+
+  $nano-col3-4 {
+    @extend $col;
+
+    width: 75%;
+  }
+
+  $nano-col1-3 {
+    @extend $col;
+
+    width: 33.33%;
+  }
+
+  $nano-col2-3 {
+    @extend $col;
+
+    width: 66.66%;
+  }
+
+  $nano-push1-4 {
+    margin-left: 25%;
+  }
+
+  $nano-push1-2 {
+    margin-left: 50%;
+  }
+
+  $nano-push3-4 {
+    margin-left: 75%;
+  }
+
+  $nano-push1-3 {
+    margin-left: 33.33%;
+  }
+
+  $nano-push2-3 {
+    margin-left: 66.66%;
+  }
+}
+
+/* ==========================================================================
+   Screens 55em (880px) and Larger (Kilo)
+   ========================================================================== */
+
+@media only screen and (min-width: 55em) {
+  $kilo-col1-4 {
+    @extend $col;
+
+    width: 25%;
+  }
+
+  $kilo-col1-2 {
+    @extend $col;
+
+    width: 50%;
+  }
+
+  $kilo-col3-4 {
+    @extend $col;
+
+    width: 75%;
+  }
+
+  $kilo-col1-3 {
+    @extend $col;
+
+    width: 33.33%;
+  }
+
+  $kilo-col2-3 {
+    @extend $col;
+
+    width: 66.66%;
+  }
+
+  $kilo-push1-4 {
+    margin-left: 25%;
+  }
+
+  $kilo-push1-2 {
+    margin-left: 50%;
+  }
+
+  $kilo-push3-4 {
+    margin-left: 75%;
+  }
+
+  $kilo-push1-3 {
+    margin-left: 33.33%;
+  }
+
+  $kilo-push2-3 {
+    margin-left: 66.66%;
+  }
 }

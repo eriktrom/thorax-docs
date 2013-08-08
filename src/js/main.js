@@ -1,60 +1,90 @@
 $(function() {
 
-  // Fix API sidebar position on scroll
+  // Toggle mobile menus
 
-  var sidebar = $('.sidebar');
-  var threshold = 24;
+  var toggleMenu = function($btn, $menu) {
+    $btn.toggleClass('active');
+    $menu.toggleClass('expanded');
+  };
 
-  if (sidebar.length > 0) {
-    var sidebarTop = sidebar.offset().top;
+  $('.js-toggle').on('click', function() {
+    var $btn = $(this),
+        $menu = $( $btn.data('menu') );
 
-    var positionSidebar = function() {
-      var docViewTop = $(window).scrollTop();
+    toggleMenu($btn, $menu);
+  });
 
-      if (sidebarTop <= docViewTop + 24) {
-        sidebar.addClass('is-fixed');
-      } else {
-        sidebar.removeClass('is-fixed');
-      }
-    };
+  // Close mobile menus on select
 
-    $(window).scroll(function() {
-      positionSidebar();
-    });
+  $('.js-menu').on('click', 'a', function() {
+    var $menu = $(this).parents('.js-menu'),
+        $btn = $( $menu.data('control') );
 
-    positionSidebar();
-  }
-
+    toggleMenu($btn, $menu);
+  });
 
   // Toggle tutorial video display
 
   var hero = $('.hero'),
-      video = $('.video').find('iframe')[0],
-      player = $f(video),
-      videoButton = $('.js-screencast');
+      heroContent = hero.find('.hero-content'),
+      video = $('.video'),
+      videoButton = $('.js-screencast'),
+      videoEmbed = $('<iframe src="http://player.vimeo.com/video/60230630?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;api=1" width="853" height="480" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'),
+      videoLoaded = false,
+      player;
 
-  if (hero.length > 0) {
-    hero.height( hero.outerHeight() );
+  var loadVideo = function() {
+    video.find('.iframe-container').append(videoEmbed);
 
-    var toggleVideo = function() {
-      if ( !hero.hasClass('has-video') || hero.hasClass('no-video') ) {
-        hero.addClass('has-video')
-            .removeClass('no-video');
-      } else {
-        hero.removeClass('has-video')
-            .addClass('no-video');
-        player.api('pause');
+    player = $f( video.find('iframe')[0] );
+
+    toggleVideo();
+    videoLoaded = true;
+  };
+
+  var toggleVideo = function() {
+    hero.height( hero.height() );
+
+    window.setTimeout(animateHero, 1);
+    window.setTimeout(checkHero, 2);
+  };
+
+  var animateHero = function() {
+    hero.on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function(e) {
+      if ( $(e.target).hasClass('hero') ) {
+        resetHero();
       }
-    };
+    })
+    .addClass('animating');
+  };
 
-    videoButton.on('click', function(e) {
-      e.preventDefault();
+  var checkHero = function() {
+    if (hero.hasClass('has-video')) {
+      hero.height( heroContent.outerHeight() )
+          .removeClass('has-video');
+      player.api('pause');
+    } else {
+      hero.height( video.height() )
+          .addClass('has-video');
+    }
+  };
+
+  var resetHero = function() {
+    hero.height('auto').removeClass('animating');
+  };
+
+  videoButton.on('click', function(e) {
+    e.preventDefault();
+
+    if (videoLoaded === false) {
+      loadVideo();
+    } else {
       toggleVideo();
-    });
-  }
+    }
+  });
 
   // features toggle
-  $('.features li').click(function(event) {
+  $('.features-nav li').click(function(event) {
     event.preventDefault();
     var id = $(this).find('a').attr('href');
     hideFeatures();
@@ -62,10 +92,11 @@ $(function() {
   });
 
   function hideFeatures() {
-    $('.features li').each(function() {
+    $('.features-nav li').each(function() {
       toggleFeature($(this).find('a').attr('href'), false);
     });
   }
+
   hideFeatures();
 
   function toggleFeature(id, show) {
@@ -73,6 +104,5 @@ $(function() {
     elements.toggle(show);
   }
 
-  toggleFeature($('.features li:first a').attr('href'), true);
-
+  toggleFeature($('.features-nav li:first a').attr('href'), true);
 });
