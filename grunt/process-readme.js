@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     var done = this.async();
 
     require('https').get({
-      path: '/walmartlabs/thorax/master/README.md',
+      path: '/walmartlabs/thorax/content-rework/README.md',
       method: 'GET',
       host: 'raw.github.com',
       port: 443
