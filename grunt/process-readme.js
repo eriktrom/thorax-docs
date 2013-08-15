@@ -42,21 +42,9 @@ module.exports = function(grunt) {
 
     grunt.file.write('src/content/quick-start.md', segments[1]);
     grunt.file.write('src/content/features.md', segments[2].replace(/^.+/, '')); // will remove first line only
-    grunt.file.write('src/content/api.md', segments[4]);
-    grunt.file.write('src/content/errors.md', segments[5]);
+    grunt.file.write('src/content/api.md', segments[3]);
 
-    // need to split up getting-started, should contain:
-    // [1] tutorials
-    // [2] resources
-    var gettingStartedSegments = segments[3].split(/\n\#\#\s/m).map(function(segment, i) {
-      if (i !== 0) {
-        segment = '## ' + segment;
-      }
-      return segment;
-    });
-    grunt.file.write('src/content/tutorials.md', gettingStartedSegments[1]);
-    grunt.file.write('src/content/resources.md', gettingStartedSegments[2]);
-
+    
     done(true);
   }
 
