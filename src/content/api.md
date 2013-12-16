@@ -132,7 +132,7 @@ Given the code below:
     Application.setView(b);
     Application.setView(c);
 
-`b` will be destroyed, and `a` will not be.
+`b` and `c` will be destroyed, but `a` will not.
 
 When the optional `owner` parameter is passed, the retain reference count will automatically be reduced when the owner view is destroyed.
 
@@ -202,7 +202,7 @@ Serializes a form. `callback` will receive the attributes from the form, followe
 - `children` - defaults to true, whether or not to serialize inputs in child views
 - `silent` - defaults to true, whether or not to pass `silent: true` to `model.set`
 
-Each form input in your application should contain a corresponding label. Since you may want to re-use the same form multiple times in the same view a `@cid` attribute with a unique value is provided to each render call of each template:
+Each form input in your application should contain also contain a corresponding label. Since you may want to re-use the same form multiple times in the same view a `@cid` attribute with a unique value is provided to each render call of each template:
 
     <label for="{{@cid}}-last-name"/>
     <input name="last-name" id="{{@cid}}-last-name" value="Beastridge"/>
@@ -290,7 +290,7 @@ A helper that re-rendered a `HelperView` every time an event was triggered on th
 
 An example use of this would be to have a counter that would increment each time a button was clicked. In Handlebars:
 
-    {{#on "incremented"}}{{i}}{/on}}
+    {{#on "incremented"}}{{i}}{{/on}}
     {{#button trigger="incremented"}}Add{{/button}}
 
 And the corresponding view class:
@@ -316,7 +316,7 @@ In addition, if a view class is specified as the second argument to `registerVie
 
 ## Thorax.LayoutView
 
-A view to contain a single other view which will change over time, (multi-pane single page applications for instance), triggering a series of events . By default this class has no template. If one is specified use the `layout` helper to determine where `setView` will place a view. A `Thorax.LayoutView` is a subclass of `Thorax.View` and may be treated as a view in every regard (i.e. embed multiple `LayoutView` instances in a parent view with the `view` helper).
+A view to contain a single other view which will change over time, (multi-pane single page applications for instance), triggering a series of events . By default this class has no template. If one is specified use the `{{layout-element}}` helper to determine where `setView` will place a view. A `Thorax.LayoutView` is a subclass of `Thorax.View` and may be treated as a view in every regard (i.e. embed multiple `LayoutView` instances in a parent view with the `view` helper).
 
 ### setView *view.setView(view [,options])*
 
@@ -366,7 +366,7 @@ A view class to be initialized for each item. Can be used in conjunction with `i
 
 ### itemContext *view.itemContext(model, index)*
 
-A function in the declaring view to specify the context for an `itemTemplate`, recieves model and index as arguments. `itemContext` will not be used if an `itemView` is specified as the `itemView`'s own `context` method will instead be used.
+A function in the declaring view to specify the context for an `itemTemplate`, receives model and index as arguments. `itemContext` will not be used if an `itemView` is specified as the `itemView`'s own `context` method will instead be used.
 
 A collection helper may specify a specific function to use as the `itemContext` if there are multiple collections in a view:
 
@@ -406,7 +406,7 @@ An index to place the `loadingView` or `loadingTemplate` at. Defaults to `this.c
 
 Append a model (which will used to generate a new `itemView` or render an `itemTemplate`) or a view at a given index in the `CollectionView`. If passing a view as the first argument `index` may be a model which will be used to look up the index.
 
-By default this will trigger a `rendered:item` event, `silent: true` may be passed in the options hash to prevent this. To also prevent the appeneded item from being filtered if an `itemFilter` is present pass `filter: false` in the options hash.
+By default this will trigger a `rendered:item` event, `silent: true` may be passed in the options hash to prevent this. To also prevent the appended item from being filtered if an `itemFilter` is present pass `filter: false` in the options hash.
 
 ### removeItem *view.removeItem(model)*
 
@@ -539,7 +539,7 @@ All of the behavior described in this section is implemented via this method, so
 
 ### Queuing
 
-Thorax wraps `fetch` (and therefore `load`) on models and collections with a queuing mechansim to ensure that multiple `sync` calls for the same url will not trigger multiple HTTP requests. To force a `fetch` or `load` call to create a new HTTP request regardless of whether an identical request is in the queue use the `resetQueue` option:
+Thorax wraps `fetch` (and therefore `load`) on models and collections with a queuing mechanism to ensure that multiple `sync` calls for the same url will not trigger multiple HTTP requests. To force a `fetch` or `load` call to create a new HTTP request regardless of whether an identical request is in the queue use the `resetQueue` option:
 
     model.fetch({
       resetQueue: true
@@ -548,7 +548,7 @@ Thorax wraps `fetch` (and therefore `load`) on models and collections with a que
 
 ### bindToRoute *Thorax.Util.bindToRoute(callback [,failback])*
 
-Used by `model.load` and `collection.load`. Binds the callback to the current route. If the browser navigtates to another route in the time between when the callback is bound and when it is executed, callback will not be called. Else failback will be called if present.
+Used by `model.load` and `collection.load`. Binds the callback to the current route. If the browser navigates to another route in the time between when the callback is bound and when it is executed, callback will not be called. Else failback will be called if present.
 
     routerMethod: function() {
       var callback = Thorax.Util.bindToRoute(function() {
@@ -691,7 +691,7 @@ To call a method from an `a` tag use the `button` helper:
 
     {{#button "methodName" tag="a"}}My Link{{/button}}
 
-Like the `button` helper, a `trigger` attribute may be specified that will trigger an event on the delcaring view in addition to navigating to the specified url:
+Like the `button` helper, a `trigger` attribute may be specified that will trigger an event on the declaring view in addition to navigating to the specified url:
 
     {{#link "articles" id trigger="customEvent"}}Link Text{{/link}}
 
@@ -738,7 +738,7 @@ When rendering `this.collection` many properties will be forwarded from the view
 - `loadingView`
 - `loadingPlacement`
 
-As a result the following two views are equivelenet:
+As a result the following two views are equivalent:
 
     // render with collection helper, collection
     // properties are forwarded
@@ -774,7 +774,7 @@ A conditional helper much like `if` that calls `isEmpty` on the specified object
       {{#collection}}{{/collection}}
     {{/empty}}
 
-To embed a row within a `collection` helper if it the collection is empty, specify an `empty-view` or `empty-template`. Or use the `else` block of the `collection` helper:
+To embed a row within a `collection` helper, if the collection is empty, specify an `empty-view` or `empty-template`. Or use the `else` block of the `collection` helper:
 
     {{#collection tag="ul"}}
       <li>Some very fine data</li>
@@ -784,7 +784,7 @@ To embed a row within a `collection` helper if it the collection is empty, speci
 
 ### collection-element *{{collection-element [htmlAttributes...]}}*
 
-By default `Thorax.CollectionView` instances have no template. Items will be appended to and removed from the view's `el`. Alternatively a template can be specified and `collection-element` used to specify where the individal items in a collection will be rendered.
+By default `Thorax.CollectionView` instances have no template. Items will be appended to and removed from the view's `el`. Alternatively a template can be specified and `collection-element` used to specify where the individual items in a collection will be rendered.
 
     <div>
       {{collection-element tag="ul" class="my-list"}}
@@ -792,7 +792,7 @@ By default `Thorax.CollectionView` instances have no template. Items will be app
 
 ### layout-element *{{layout-element [htmlAttributes...]}}*
 
-By default `Thorax.LayoutView` instances have no template, `setView` will append directly to the view's `el`. Alternatively a template can be specified and a `layout-element` and `setView` will append to that element.
+By default `Thorax.LayoutView` instances have no template thus `setView` will append directly to the view's `el`. However, you may optionally set it's template option. When doing so use the `{{layout-element}}` helper to specify where inside the template you would like to render the view passed to `setView`.
 
     <ul>
       {{layout-element tag="li" id="my-layout"}}
@@ -800,7 +800,7 @@ By default `Thorax.LayoutView` instances have no template, `setView` will append
 
 ### loading *{{#loading}}*
 
-A block helper to use when the view is loading. For collection specific loading the a `CollectionView` accepts `loadingView` and `loadingTemplate` options to append an item in a collection when it is loading.
+A block helper to use when the view is loading. For collection specific loading, `CollectionView` accepts the `loadingView` and `loadingTemplate` options to append an item in a collection when it is loading.
 
     {{#loading}}
       View is loading a model or collection.
@@ -816,11 +816,11 @@ Triggered on a view when the `rendered` method is called.
 
 ### child *child (instance)*
 
-Triggered on a view every time a child view is appened into the view with the `view` helper.
+Triggered on a view every time a child view is appended into the view with the `view` helper.
 
 ### ready *ready (options)*
 
-Triggered when a view is append to the DOM with `appendTo` or when a view is appeneded to a `LayoutView` via `setView`. Setting focus and other behaviors that depend on the view being present in the DOM should be handled in this event.
+Triggered when a view is appended to the DOM with `appendTo` or when a view is appended to a `LayoutView` via `setView`. Setting focus and other behaviors that depend on the view being present in the DOM should be handled by this event's handler.
 
 This event propagates to all children, including children that will be bound after the view is created. `options` will contain a `target` view, which is the view that triggered the event.
 
@@ -864,7 +864,7 @@ Triggered on a view when `serialize` is called, before `validateInput` is called
 
 ### validate *validate (attributes, errors)*
 
-Triggered on a view when `serialize` is called, passed an an attributes hash and errors array after `validateInput` is called. Use in combination with the `invalid` event to display and clear errors from your views.
+Triggered on a view when `serialize` is called, passed an attributes hash and errors array after `validateInput` is called. Use in combination with the `invalid` event to display and clear errors from your views.
 
     Thorax.View.on({
       validate: function(attributes, errors) {
@@ -926,7 +926,7 @@ Thorax and its view helpers generate a number of custom HTML attributes that may
     <tr><td><code>data-collection-element</code></td><td>Set by the <code>collection-element</code>, determines where a collection in a <code>CollectionView</code> will be rendered.</td></tr>
     <tr><td><code>data-model-cid</code></td><td>A view's <code>el</code> if a model was bound to the view or each item element inside of elements generated by the collection helper</td></tr>
     <tr><td><code>data-model-name</code></td><td>Same as above, only present if the model is named</td></tr>
-    <tr><td><code>data-layout-cid</code></td><td>The element generated by the <code>layout</code> helper or <code>el</code> inside of a <code>LayoutView</code> or <code>ViewController</code> instance</td></tr>
+    <tr><td><code>data-layout-cid</code></td><td>The element generated by the <code>layout-element</code> helper or <code>el</code> inside of a <code>LayoutView</code></td></tr>
     <tr><td><code>data-view-helper</code></td><td>Elements generated by various helpers including <code>collection</code> and <code>empty</code> from the collection plugin</td></tr>
     <tr><td><code>data-call-method</code></td><td>Elements generated by the <code>link</code> and <code>button</code> helpers</td></tr>
     <tr><td><code>data-trigger-event</code></td><td>Elements generated by the <code>link</code> and <code>button</code> helpers</td></tr>
